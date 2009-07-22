@@ -1,0 +1,12 @@
+useDynLib(fftw)
+
+## FFTW functions:
+export(planFFT)
+export(FFT)
+export(IFFT)
+S3method(print, FFTplan)
+
+## DCT functions:
+export(planDCT)
+export(DCT)
+export(IDCT)

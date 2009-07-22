@@ -1,0 +1,11 @@
+Package: fftw
+Version: 0.3-1
+Title: Fast FFT and DCT based on FFTW
+Description: Provides a simple and efficient wrapper around 
+  the fastest Fourier transform in the west (FFTW).
+Author: Sebastian Krey <skrey@statistik.tu-dortmund.de>
+	Olaf Mersmann <olafm@statistik.tu-dortmund.de>	
+Maintainer: Olaf Mersmann <olafm@statistik.tu-dortmund.de>
+Depends: R (>= 2.9.0)
+SystemDepends: fftw3 (>= 3.1.2)
+License: GPL-2
