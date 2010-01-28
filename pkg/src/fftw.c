@@ -212,6 +212,9 @@ SEXP DCT_plan(SEXP s_n, SEXP s_type, SEXP s_effort) {
   } else if (type == 4) {
     fw_type = FFTW_REDFT11;
     bw_type = fw_type;
+  } else {
+    error("Unknown type specified.");
+    return NULL;
   }
     
   /* If s_n is a single integer, assume it is the length */
