@@ -3,7 +3,7 @@ GITVERSION	:= $(word 3,$(shell git --version))
 
 ## Darwin / OS X specific flags:
 ifeq ($(OSTYPE),Darwin)
-INSTALL_FLAGS := --no-multiarch --configure-args="--with-fftw3-prefix=/opt/local"
+INSTALL_FLAGS := --install-args='--no-multiarch --configure-args="--with-fftw3-prefix=/opt/local"'
 endif
 
 .PHONEY: clean test check build install pkg
@@ -17,7 +17,7 @@ test: install
 	Rscript pkg/inst/unittests/runner.r
 
 check: clean
-	R CMD check --install-args="$(INSTALL_FLAGS)" pkg && rm -fR pkg.Rcheck
+	R CMD check $(INSTALL_FLAGS) pkg && rm -fR pkg.Rcheck
 
 clean:
 	(cd pkg; ./cleanup)
