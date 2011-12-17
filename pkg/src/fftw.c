@@ -15,8 +15,6 @@
 #include <R_ext/Applic.h>
 #include <fftw3.h>
 
-#include <assert.h>
-
 #define ALLOC_COMPLEX_VECTOR(S, D, N)		\
   SEXP S;					\
   PROTECT(S = allocVector(CPLXSXP, N));		\
@@ -97,7 +95,6 @@ static int choose_effort(SEXP s_effort) {
 /* General FFT case: */
 SEXP FFT_print_plan(SEXP s_plan) {
   fft_plan *plan = R_ExternalPtrAddr(s_plan);
-  assert(plan != NULL);
 
   Rprintf("plan->size     : %i\n", plan->size);
   Rprintf("plan->in       : 0x%08x\n", plan->in);
@@ -134,7 +131,6 @@ SEXP FFT_plan(SEXP s_n, SEXP s_effort) {
 				    FFTW_DESTROY_INPUT | effort);
 
   SEXP s_ret = R_MakeExternalPtr((void *)plan, R_NilValue, R_NilValue);
-  assert(s_ret != R_NilValue);
   R_RegisterCFinalizer(s_ret, fft_plan_finalizer);
   return s_ret;
 }
@@ -145,7 +141,6 @@ SEXP FFT_execute(SEXP s_plan, SEXP s_x, SEXP s_inv) {
   fftw_plan p;
 
   plan = R_ExternalPtrAddr(s_plan);
-  assert(plan != NULL);
 
   /* Extract fftw plan: */
   if (INTEGER(s_inv)[0] == FALSE) {    
@@ -242,7 +237,6 @@ SEXP DCT_plan(SEXP s_n, SEXP s_type, SEXP s_effort) {
   }
 
   SEXP s_ret = R_MakeExternalPtr((void *)plan, R_NilValue, R_NilValue);
-  assert(s_ret != R_NilValue);
   R_RegisterCFinalizer(s_ret, fft_plan_finalizer);
   return s_ret;
 }
@@ -253,7 +247,6 @@ SEXP DCT_execute(SEXP s_plan, SEXP s_x, SEXP s_inv) {
   fftw_plan p;
 
   plan = R_ExternalPtrAddr(s_plan);
-  assert(plan != NULL);
 
   /* Extract fftw plan: */
   if (INTEGER(s_inv)[0] == FALSE) {    
