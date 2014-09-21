@@ -3,3 +3,4 @@
 ^examples
 aclocal.m4
 configure.ac
+src/build

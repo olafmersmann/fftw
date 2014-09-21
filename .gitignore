@@ -6,3 +6,4 @@
 *.so
 .#*
 dist
+src/build

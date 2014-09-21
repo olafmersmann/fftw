@@ -4,14 +4,14 @@
 ## Process this file with autoconf to produce a configure script.
 ##
 
-AC_PREREQ(2.61)
+AC_PREREQ(2.69)
 
 ## ---[ VERSION ]-------------------------------------------------------------
 
 AC_INIT()
 AC_CONFIG_AUX_DIR(src/build/autoconf)
 
-## pick up compiler as will be used by R CMD INSTALL/SHLIB
+## pick up compiler that will be used by R CMD INSTALL/SHLIB
 if test -n "${R_HOME}"; then
   CC=`${R_HOME}/bin/R CMD config CC`
   CPP=`${R_HOME}/bin/R CMD config CPP`
