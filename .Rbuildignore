@@ -3,3 +3,7 @@
 ^examples
 aclocal.m4
 configure.ac
+config.log
+config.status
+
+src/Makevars
