@@ -1,0 +1,5 @@
+^do$
+^dist
+^examples
+aclocal.m4
+configure.ac
