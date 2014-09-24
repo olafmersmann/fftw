@@ -15,15 +15,27 @@
 #include <R_ext/Applic.h>
 #include <fftw3.h>
 
-#define ALLOC_COMPLEX_VECTOR(S, D, N)		\
-  SEXP S;					\
-  PROTECT(S = allocVector(CPLXSXP, N));		\
-  Rcomplex *D = COMPLEX(S);
+#define ALLOC_VECTOR(S, D, ST, DT, C, N)            \
+    SEXP S;                                         \
+    PROTECT(S = allocVector(ST, N));                \
+    DT *D = C(S);
 
-#define ALLOC_REAL_VECTOR(S, D, N)		\
-  SEXP S;					\
-  PROTECT(S = allocVector(REALSXP, N));		\
-  double *D = REAL(S);
+#define ALLOC_MATRIX(S, D, ST, DT, C, NROW, NCOL)   \
+    SEXP S;                                         \
+    PROTECT(S = allocMatrix(ST, NROW, NCOL));       \
+    DT *D = C(S);
+
+#define ALLOC_REAL_VECTOR(S, D, N) \
+    ALLOC_VECTOR(S, D, REALSXP, double, REAL, N)
+
+#define ALLOC_REAL_MATRIX(S, D, NROW, NCOL) \
+    ALLOC_MATRIX(S, D, REALSXP, double, REAL, NROW, NCOL)
+
+#define ALLOC_COMPLEX_VECTOR(S, D, N) \
+    ALLOC_VECTOR(S, D, CPLXSXP, Rcomplex, COMPLEX, N)
+
+#define ALLOC_REAL_MATRIX(S, D, NROW, NCOL) \
+    ALLOC_MATRIX(S, D, CPLXSXP, Rcomplex, COMPLEX, NROW, NCOL)
 
 /* Is fftw initialized? */
 static int initialized = FALSE;
