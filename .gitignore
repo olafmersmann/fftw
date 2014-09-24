@@ -5,3 +5,7 @@
 *.o
 *.so
 .#*
+dist
+config.log
+config.status
+src/Makevars

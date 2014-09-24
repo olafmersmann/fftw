@@ -1,0 +1,13 @@
+Package: fftw
+Version: 1.0-2.3
+Title: Fast FFT and DCT Based on the FFTW Library
+Description: Provides a simple and efficient wrapper around the fastest
+        Fourier transform in the west (FFTW) library.
+Authors@R: c( person("Olaf", "Mersmann", email="olafm@p-value.net",
+        role=c("aut", "cre")), person("Sebastian", "Krey",
+        email="skrey@statistik.tu-dortmund.de", role=c("ctb")),
+        person("Uwe", "Ligges",
+        email="ligges@statistik.tu-dortmund.de", role=c("ctb")) )
+Depends: R (>= 3.0.0)
+SystemRequirements: fftw3 (>= 3.1.2)
+License: GPL-2
