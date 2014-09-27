@@ -1,4 +1,5 @@
 ^do$
+^.dict.rds
 ^dist
 ^examples
 aclocal.m4
