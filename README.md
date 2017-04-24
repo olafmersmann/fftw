@@ -20,5 +20,5 @@ library("devtools")
 install_github("olafmersmann/fftw")
 ```
 
-[![CRAN Status Badge](http://www.r-pkg.org/badges/version/fftw)](http://cran.r-project.org/web/packages/fftw)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/fftw)](http://cran.rstudio.com/web/packages/fftw/index.html)
+[![CRAN Status Badge](http://www.r-pkg.org/badges/version/fftw)](https://cran.r-project.org/package=fftw)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/fftw)](https://cran.r-project.org/package=fftw)
