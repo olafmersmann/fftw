@@ -13,6 +13,7 @@
 #include <Rmath.h>
 #include <Rinternals.h>
 #include <R_ext/Applic.h>
+#include <R_ext/Rdynload.h>
 #include <fftw3.h>
 
 #define ALLOC_VECTOR(S, D, ST, DT, C, N)                                       \
@@ -33,7 +34,7 @@
 #define ALLOC_COMPLEX_VECTOR(S, D, N)                                          \
   ALLOC_VECTOR(S, D, CPLXSXP, Rcomplex, COMPLEX, N)
 
-#define ALLOC_REAL_MATRIX(S, D, NROW, NCOL)                                    \
+#define ALLOC_COMPLEX_MATRIX(S, D, NROW, NCOL)                                    \
   ALLOC_MATRIX(S, D, CPLXSXP, Rcomplex, COMPLEX, NROW, NCOL)
 
 /* Is fftw initialized? */
@@ -288,4 +289,18 @@ SEXP DCT_execute(SEXP s_plan, SEXP s_x, SEXP s_inv) {
 
   UNPROTECT(1); /* s_ret */
   return s_ret;
+}
+
+static const R_CallMethodDef fftw_call_methods[]  = {
+  {"FFT_print_plan", (DL_FUNC) &FFT_print_plan, 1},
+  {"FFT_plan", (DL_FUNC) &FFT_plan, 2},
+  {"FFT_execute", (DL_FUNC) &FFT_execute, 3},
+  {"DCT_plan", (DL_FUNC) &DCT_plan, 3},
+  {"DCT_execute", (DL_FUNC) &DCT_execute, 3},
+  {NULL, NULL, 0}
+};
+
+void R_init_fftw(DllInfo *info) {
+   R_registerRoutines(info, NULL, fftw_call_methods, NULL, NULL);
+   R_useDynamicSymbols(info, FALSE);
 }
