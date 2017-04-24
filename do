@@ -104,33 +104,8 @@ do_check <- function(subcommand, ...) {
                            "00check.log")
     dir.create(check_dir)
     message("INFO: Checking package.")
-    ok <- tryCatch(check(".", document=FALSE, quiet=TRUE, cleanup=FALSE,
-                         check_dir=check_dir),
-                   error = function(e) FALSE)
-
-    if (ok) {
-      ## Read check log lines
-      lines <- readLines(check_log)
-      ## Find all lines containing stuff we know is OK or irrelevant
-      irrelevant_indexes <- c(grep("^\\* using", lines),
-                              grep("OK$", lines),
-                              grep("^\\* this is package .* version .*$", lines)
-                              )
-      relevant_lines <- lines[-irrelevant_indexes]
-      ## Output all relevant lines
-      if (length(relevant_lines) > 0) {
-        message("INFO: Found the following anomalies in the log:")
-        message(paste("  ", relevant_lines, collapse="\n"))
-      }
-      ## Remove cruft
-      unlink(check_dir, recursive=TRUE)
-      message("INFO: Package passed R CMD check.")
-    } else {
-      messagef("ERROR: Check failed. See '%s' for details.", check_log)
-      ## If someone is sitting at the console, display the check logfile.
-      if (isatty(stdout()))
-        file.show(check_log)
-    }
+    res <- check(".", document=FALSE, quiet=TRUE, check_dir=check_dir)
+    print(res)
   } else if (subcommand == "spelling") {
     dictionaries <- "en_stats.rds"
     if (file.exists("./.dict.rds"))
