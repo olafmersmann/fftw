@@ -1,5 +1,5 @@
 Package: fftw
-Version: 1.0-2.15
+Version: 1.0-2.16
 Title: Fast FFT and DCT Based on the FFTW Library
 Description: Provides a simple and efficient wrapper around the fastest
         Fourier transform in the west (FFTW) library.
