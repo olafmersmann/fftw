@@ -1,5 +1,6 @@
 ^do$
 ^.dict.rds
+^.clang-format
 ^dist
 ^examples
 aclocal.m4
