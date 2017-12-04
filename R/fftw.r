@@ -20,12 +20,16 @@ print.FFTplan <- function(x, ...)
 FFT <- function(x, ..., plan) {
   if (missing(plan))
     plan <- planFFT(x)
+  if (is.integer(x))
+    x <- as.numeric(x)
   .Call("FFT_execute", plan, x, FALSE, PACKAGE="fftw")
 }
 
 IFFT <- function(x, ..., plan, scale=TRUE) {
   if (missing(plan))
     plan <- planFFT(x)
+  if (is.integer(x))
+    x <- as.numeric(x)
   y <- .Call("FFT_execute", plan, x, TRUE, PACKAGE="fftw")
   if (scale)
     y <- y / length(y)
@@ -44,12 +48,16 @@ planDCT <- function(n, type=1, effort=0) {
 DCT <- function(x, ..., plan, type=1) {
   if (missing(plan))
     plan <- planDCT(x, type)
+  if (is.integer(x))
+    x <- as.numeric(x)
   .Call("DCT_execute", plan, x, FALSE, PACKAGE="fftw")
 }
 
 IDCT <- function(x, ..., plan, type=1, scale=TRUE) {
   if (missing(plan))
     plan <- planDCT(x, type)
+  if (is.integer(x))
+    x <- as.numeric(x)
   y <- .Call("DCT_execute", plan, x, TRUE, PACKAGE="fftw")  
   if (scale) {
     n <- length(y)
