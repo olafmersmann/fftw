@@ -161,6 +161,10 @@ SEXP FFT_execute(SEXP s_plan, SEXP s_x, SEXP s_inv) {
 
   /* Extract input vector: */
   n = length(s_x);
+  if (n < 1) {
+    error("Input has length zero.");
+    return R_NilValue;
+  }
   if (n != plan->size) {
     error("Input and plan size differ.");
     return R_NilValue;
@@ -265,6 +269,10 @@ SEXP DCT_execute(SEXP s_plan, SEXP s_x, SEXP s_inv) {
 
   /* Extract input vector: */
   n = length(s_x);
+  if (n < 1) {
+    error("Input has length zero.");
+    return R_NilValue;
+  }
   if (n != plan->size) {
     error("Input and plan size differ.");
     return R_NilValue;
