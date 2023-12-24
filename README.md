@@ -1,16 +1,7 @@
 # fftw
 R bindings for the FFTW library.
 
-## Install development version
-
-From time to time I release development version to my private R package repository. 
-To install from this repository run:
-
-```splus
-install.packages("fftw", repos="http://olafmersmann.github.io/drat")
-```
-
-## Install from GitHub
+## Install latest version from GitHub
 
 To install the bleeding edge version from GitHub run (requires the `devtools`
 package):
